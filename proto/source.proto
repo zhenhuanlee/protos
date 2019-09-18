@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package proto;
+
+service Gou {
+    rpc CheckIn (Req) returns (Resp) {};
+}
+
+message Req {
+  string uuid=1;
+  string kind=2;
+  string body=3;
+}
+
+message Resp {
+  string code=1;
+  string body=2;
+}
