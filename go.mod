@@ -1,4 +1,4 @@
-module github/zhenhuanlee/protos
+module github.com/zhenhuanlee/protos
 
 require (
 	github.com/golang/protobuf v1.3.2
