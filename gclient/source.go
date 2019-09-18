@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"protos/gproto"
 
+	"github.com/zhenhuanlee/protos/gproto"
 	"google.golang.org/grpc"
 )
 
