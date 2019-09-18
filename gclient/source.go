@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/zhenhuanlee/protos/gproto"
+	"github.com/zhenhuanlee/protos/proto"
 	"google.golang.org/grpc"
 )
 
 var (
 	sourceurl    string
 	sourceConn   *grpc.ClientConn
-	sourceClient gproto.GouClient
+	sourceClient proto.GouClient
 )
 
 func init() {
@@ -20,7 +20,7 @@ func init() {
 }
 
 // NewSourceClient new a source client
-func NewSourceClient(url string) (gproto.GouClient, error) {
+func NewSourceClient(url string) (proto.GouClient, error) {
 	if sourceClient != nil {
 		return sourceClient, nil
 	}
@@ -29,12 +29,12 @@ func NewSourceClient(url string) (gproto.GouClient, error) {
 	if err != nil {
 		return nil, err
 	}
-	sourceClient = gproto.NewGouClient(sourceConn)
+	sourceClient = proto.NewGouClient(sourceConn)
 	return sourceClient, nil
 }
 
 // CheckIn send msg
-func CheckIn(uuid, kind, body string) (*gproto.Resp, error) {
+func CheckIn(uuid, kind, body string) (*proto.Resp, error) {
 	if sourceurl == "" {
 		sourceurl = os.Getenv("SOURCEURL")
 	}
@@ -44,7 +44,7 @@ func CheckIn(uuid, kind, body string) (*gproto.Resp, error) {
 		return nil, err
 	}
 
-	r, err := c.CheckIn(context.Background(), &gproto.Req{
+	r, err := c.CheckIn(context.Background(), &proto.Req{
 		Uuid: uuid,
 		Kind: kind,
 		Body: body,

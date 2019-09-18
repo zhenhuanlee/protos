@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package gproto;
+package proto;
 
 service Gou {
     rpc CheckIn (Req) returns (Resp) {};
