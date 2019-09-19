@@ -2,7 +2,6 @@ package gclient
 
 import (
 	"context"
-	"fmt"
 	"os"
 
 	"github.com/zhenhuanlee/protos/proto"
@@ -38,7 +37,7 @@ func CheckIn(uuid, kind, body string) (*proto.Resp, error) {
 	if sourceurl == "" {
 		sourceurl = os.Getenv("SOURCEURL")
 	}
-	fmt.Println(sourceurl)
+
 	c, err := NewSourceClient(sourceurl)
 	if err != nil {
 		return nil, err
@@ -50,6 +49,11 @@ func CheckIn(uuid, kind, body string) (*proto.Resp, error) {
 		Body: body,
 	})
 	return r, err
+}
+
+// Close close
+func Close() {
+	sourceConn.Close()
 }
 
 /*-----------------------------------------------------------*/
